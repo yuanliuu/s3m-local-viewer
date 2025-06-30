@@ -1,0 +1,23 @@
+{
+  "name": "s3m-local-viewer",
+  "version": "1.0.0",
+  "description": "Local s3mb file previewer",
+  "author": "yuanliu",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "dist/js/app.js",
+  "scripts": {
+    "lint": "eslint ./src",
+    "build": "npm run clean && npm run rollup",
+    "clean": "rimraf ./dist",
+    "rollup": "rollup -c --bundleConfigAsCjs"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.34.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.2.1",
+    "rollup": "^3.9.1",
+    "rollup-plugin-copy": "^3.5.0"
+  }
+}

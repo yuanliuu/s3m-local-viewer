@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S3M Local Viewer</title>
+    <link href="js/libs/Cesium/Widgets/widgets.css" rel="stylesheet" />
+    <style>
+      .cesium-widget-credits {
+        display: none !important;
+      }
+      .cesium-viewer {
+        border-radius: 4px;
+      }
+    </style>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+      }
+      .container-left {
+        width: 30%;
+      }
+      .container-right {
+        width: calc(70% - 10px);
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .file-zone {
+        position: relative;
+        border: 1px dashed gray;
+        border-radius: 4px;
+        padding: 8px;
+      }
+      .viewer-options {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+      }
+
+      .json-content {
+        margin-top: 10px;
+        height: calc(100% - 125px);
+        background-color: #272822;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 4px;
+      }
+      .json-content > label {
+        color: #fff;
+        font-size: 14px;
+      }
+      #json-tree {
+        margin-top: 10px;
+        max-height: calc(100% - 31px);
+        overflow-y: scroll;
+      }
+
+      #cesiumContainer {
+        height: 70%;
+        flex-shrink: 0;
+      }
+
+      .analysis {
+        height: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        background-color: #272822;
+      }
+      .analysis > label {
+        color: #fff;
+        font-size: 14px;
+      }
+      .analysis-content {
+        height: 100%;
+        margin: 0;
+      }
+
+      .text-info {
+        color: #fff;
+      }
+      .text-warning {
+        color: #ff8811;
+      }
+      .text-danger {
+        color: #d54e50;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.8);
+      }
+      ::-webkit-scrollbar-track {
+        border-radius: 2px;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-left">
+        <div class="file-zone">
+          <input id="file" type="file" accept=".s3mb,.scp" multiple />
+          <ul>
+            <li>支持选择单个或多个s3mb文件</li>
+            <li>使用scp文件时，s3mb须在同级目录</li>
+          </ul>
+          <div class="viewer-options"><input id="viewer-globe-visible" type="checkbox" checked /> 球面展示</div>
+        </div>
+        <div class="json-content">
+          <label>SCP / S3MB 结构</label>
+          <div id="json-tree"></div>
+        </div>
+      </div>
+      <div class="container-right">
+        <div id="cesiumContainer"></div>
+        <div class="analysis">
+          <label>Console</label>
+          <ul class="analysis-content"></ul>
+          <!-- <div class="texture-viewer">
+            <canvas id="texture" style="width: 100%; height: 100%"></canvas>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <script src="js/libs/Cesium/Cesium.js"></script>
+    <script>
+      var exports = {}
+    </script>
+    <script src="js/libs/jsontohtml-render.min.js"></script>
+    <!-- I will hold the log messages -->
+    <script src="js/libs/console-log-html.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
